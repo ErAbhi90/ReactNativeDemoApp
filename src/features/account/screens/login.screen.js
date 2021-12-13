@@ -24,6 +24,7 @@ export const LoginScreen = ({ navigation }) => {
       <Title>Demo Apps</Title>
       <AccountContainer>
         <AuthInput
+          testID="login-screen-email-tid"
           label="E-mail"
           value={email}
           textContentType="emailAddress"
@@ -33,6 +34,7 @@ export const LoginScreen = ({ navigation }) => {
         />
         <Spacer size="large">
           <AuthInput
+            testID="login-screen-password-tid"
             label="Password"
             value={password}
             textContentType="password"
@@ -41,14 +43,17 @@ export const LoginScreen = ({ navigation }) => {
             onChangeText={(p) => setPassword(p)}
           />
         </Spacer>
+        <Text>{email}</Text>
+
         {error && (
-          <ErrorContainer size="large">
+          <ErrorContainer testID="login-screen-error" size="large">
             <Text variant="error">{error}</Text>
           </ErrorContainer>
         )}
         <Spacer size="large">
           {!isLoading ? (
             <AuthButton
+              testID="login-screen-login-btn-tid"
               icon="lock-open-outline"
               mode="contained"
               onPress={() => onLogin(email, password)}
@@ -61,7 +66,9 @@ export const LoginScreen = ({ navigation }) => {
         </Spacer>
       </AccountContainer>
       <Spacer size="large">
-        <AuthButton mode="contained" onPress={() => navigation.goBack()}>
+        <AuthButton
+          testID="login-screen-back-btn-tid"
+          mode="contained" onPress={() => navigation.goBack()}>
           Back
         </AuthButton>
       </Spacer>
