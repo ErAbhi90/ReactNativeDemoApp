@@ -8,7 +8,7 @@ import {
   AuthButton,
   Title,
 } from "../components/account.styles";
-
+import * as analytics from "expo-firebase-analytics";
 export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
@@ -18,7 +18,14 @@ export const AccountScreen = ({ navigation }) => {
         <AuthButton
           icon="lock-open-outline"
           mode="contained"
-          onPress={() => navigation.navigate("Login")}
+          onPress={async () => {
+            analytics.setDebugModeEnabled(true);
+            analytics.setUnavailabilityLogging(true);
+            await analytics.logEvent('Log_In_Event', {
+              appName: "Demo App"
+            });
+            navigation.navigate("Login")
+          }}
         >
           Login
         </AuthButton>
@@ -26,7 +33,14 @@ export const AccountScreen = ({ navigation }) => {
           <AuthButton
             icon="email"
             mode="contained"
-            onPress={() => navigation.navigate("Register")}
+            onPress={async () => {
+              analytics.setDebugModeEnabled(true);
+              analytics.setUnavailabilityLogging(true);
+              await analytics.logEvent('Register_Event', {
+                appName: "Demo App"
+              });
+              navigation.navigate("Register")
+            }}
           >
             Register
           </AuthButton>

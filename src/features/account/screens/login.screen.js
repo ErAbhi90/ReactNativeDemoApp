@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { ActivityIndicator, Colors } from "react-native-paper";
+import * as analytics from "expo-firebase-analytics";
 
 import {
   AccountBackground,
@@ -51,7 +52,16 @@ export const LoginScreen = ({ navigation }) => {
             <AuthButton
               icon="lock-open-outline"
               mode="contained"
-              onPress={() => onLogin(email, password)}
+              onPress={  async () => {
+                
+                analytics.setDebugModeEnabled(true);
+                analytics.setUnavailabilityLogging(true);
+                await analytics.logEvent('Tap_Login_Event', {
+                  email: email
+                });
+                onLogin(email, password);
+              }
+                } 
             >
               Login
             </AuthButton>
