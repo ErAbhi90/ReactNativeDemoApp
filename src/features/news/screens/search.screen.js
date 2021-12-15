@@ -9,10 +9,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Carousel from "react-native-snap-carousel";
-import Search from "../components/news/search.component";
-import { categories, sources } from "../services/news/api";
-import { NewsContext } from "../services/news/context";
+import { categories, sources } from "../../../services/news/api";
+import { NewsContext } from "../../../services/news/context";
+import Search from "../components/search.component";
+import { FlatList } from "react-native-gesture-handler";
 
 const SearchScreen = () => {
   const windowWidth = Dimensions.get("window").width;
@@ -21,15 +21,15 @@ const SearchScreen = () => {
   const { setCategory, setSource, darkTheme } = useContext(NewsContext);
 
   return (
-    <View style={styles.discover}>
+    <View style={styles.search}>
       <Search />
       <Text
         style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}
       >
         Categories
       </Text>
-      <Carousel
-        layout={"default"}
+      <FlatList
+        horizontal
         data={categories}
         renderItem={({ item, index }) => {
           return (
@@ -37,7 +37,7 @@ const SearchScreen = () => {
               onPress={() => setCategory(item.name)}
               style={styles.category}
             >
-              <Image source={{ uri: item.pic }} style={styles.categoryImage} />
+              <Image source={{ uri: item.pic }} style={styles.categoryImage}/>
               <Text
                 style={{ ...styles.name, color: darkTheme ? "white" : "black" }}
               >
@@ -46,11 +46,13 @@ const SearchScreen = () => {
             </TouchableOpacity>
           );
         }}
+        showsHorizontalScrollIndicator={false}
         sliderWidth={windowWidth}
         itemWidth={SLIDE_WIDTH}
         activeSlideAlignment={"start"}
         inactiveSlideScale={1}
         inactiveSlideOpacity={1}
+        keyExtractor={(item) => item.name}
       />
       <Text
         style={{ ...styles.subtitle, color: darkTheme ? "white" : "black" }}
@@ -75,7 +77,7 @@ const SearchScreen = () => {
 export default SearchScreen;
 
 const styles = StyleSheet.create({
-  discover: {
+  search: {
     padding: 10,
     alignItems: "center",
   },
@@ -83,14 +85,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     paddingBottom: 8,
-    marginHorizontal: 5,
+    margin: 10,
     borderBottomColor: "#007FFF",
     borderBottomWidth: 5,
-    alignSelf: "flex-start",
     borderRadius: 10,
   },
   category: {
-    height: 130,
+    height: 120,
+    width:90,
     margin: 10,
     alignItems: "center",
     justifyContent: "space-evenly",
@@ -101,25 +103,27 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   name: {
-    fontSize: 14,
+    fontSize: 13,
     textTransform: "capitalize",
   },
   sources: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-around",
-    paddingVertical: 15,
+    paddingVertical: 10,
   },
   sourceContainer: {
-    height: 150,
+    height: 130,
     width: "40%",
-    borderRadius: 10,
+    borderRadius: 100,
     margin: 15,
-    backgroundColor: "#cc313d",
+    backgroundColor: "#A9A9A9",
   },
   sourceImage: {
-    height: "100%",
+    height: "75%",
+    margin:10,
     borderRadius: 10,
-    resizeMode: "cover",
+    alignItems: "center",
+    resizeMode: "contain",
   },
 });

@@ -2,7 +2,6 @@ import React from "react";
 import {
   Dimensions,
   Image,
-  ImageBackground,
   Linking,
   StyleSheet,
   Text,
@@ -17,8 +16,9 @@ const News = ({ item, index, darkTheme }) => {
   return (
     <View
       style={{
-        height: windowHeight,
+        height: windowHeight-130.0,
         width: windowWidth,
+        marginBottom: 50.0,
         transform: [{ scaleY: -1 }],
       }}
     >
@@ -41,27 +41,25 @@ const News = ({ item, index, darkTheme }) => {
           {item.description}
         </Text>
         <Text style={{ color: darkTheme ? "white" : "black" }}>
-          Short by
+          Author: 
           <Text style={{ fontWeight: "bold" }}>
             {" "}
             {item.author ?? "unknown"}
           </Text>
         </Text>
       </View>
-      <ImageBackground
-        blurRadius={30}
+      <View
         style={styles.footer}
-        source={{ uri: item.urlToImage }}
       >
         <TouchableOpacity onPress={() => Linking.openURL(item.url)}>
           <Text style={{ fontSize: 15, color: "white" }}>
             '{item?.content?.slice(0, 45)}...'
           </Text>
-          <Text style={{ fontSize: 17, fontWeight: "bold", color: "white" }}>
+          <Text style={{ fontSize: 16, fontWeight: "bold", color: "red", textAlign:"right" }}>
             Read More
           </Text>
         </TouchableOpacity>
-      </ImageBackground>
+      </View>
     </View>
   );
 };
@@ -77,14 +75,15 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "bold",
     paddingBottom: 10,
+    textAlign: "center",
   },
-  content: { fontSize: 18, paddingBottom: 10 },
+  content: { fontSize: 18, paddingVertical: 10 },
   footer: {
     height: 80,
     width: windowWidth,
     position: "absolute",
     bottom: 0,
-    backgroundColor: "#d7be69",
+    backgroundColor: "#A9A9A9",
     justifyContent: "center",
     paddingHorizontal: 20,
   },
