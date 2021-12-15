@@ -5,14 +5,20 @@ import { AppNavigator } from "./app.navigator";
 import { AccountNavigator } from "./account.navigator";
 
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import Context from "../../services/news/context";
 
 export const Navigation = () => {
   const { isAuthenticated } = useContext(AuthenticationContext);
-  console.log("isAuthenticated" + isAuthenticated );
+  console.log("isAuthenticated" + isAuthenticated);
   return (
-   
     <NavigationContainer>
-      {isAuthenticated ? <AppNavigator /> : <AccountNavigator />}
+      {isAuthenticated ? (
+        <Context>
+          <AppNavigator />
+        </Context>
+      ) : (
+        <AccountNavigator />
+      )}
     </NavigationContainer>
   );
 };
