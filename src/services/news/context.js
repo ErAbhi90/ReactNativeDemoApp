@@ -2,6 +2,8 @@ import React, { createContext, useEffect, useState } from "react";
 import { getNewsAPI, getSourceAPI } from "./api";
 import axios from "axios";
 
+import Clipboard from '@react-native-community/clipboard';
+
 export const NewsContext = createContext();
 
 const Context = ({ children }) => {
@@ -34,6 +36,8 @@ const Context = ({ children }) => {
   useEffect(() => {
     fetchNewsFromSource();
   }, [source]);
+
+
 
   return (
     <NewsContext.Provider
