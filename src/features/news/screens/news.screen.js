@@ -7,9 +7,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Carousel from "react-native-snap-carousel";
-import News from "../components/news/news.component";
-
-import { NewsContext } from "../services/news/context";
+import News from "../../news/components/news.component";
+import { NewsContext } from "../../../services/news/context";
 
 const NewsScreen = () => {
   const {

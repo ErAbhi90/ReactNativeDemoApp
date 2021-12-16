@@ -9,13 +9,17 @@ const Context = ({ children }) => {
   const [category, setCategory] = useState("general");
   const [source, setSource] = useState();
   const [index, setIndex] = useState(1);
-  const [darkTheme, setDarkTheme] = useState(true);
+  const [darkTheme, setDarkTheme] = useState(false);
 
   const fetchNews = async (reset = category) => {
     const { data } = await axios.get(getNewsAPI(reset));
     setNews(data);
     setIndex(1);
   };
+
+  useEffect(() => {
+    fetchNews();
+  }, [category]);
 
   const fetchNewsFromSource = async () => {
     try {
@@ -26,10 +30,6 @@ const Context = ({ children }) => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    fetchNews();
-  }, [category]);
 
   useEffect(() => {
     fetchNewsFromSource();
