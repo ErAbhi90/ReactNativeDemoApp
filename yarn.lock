@@ -4497,7 +4497,7 @@ expo-asset@~8.4.3:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-constants@~12.1.3:
+expo-constants@~12.1.1, expo-constants@~12.1.3:
   version "12.1.3"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-12.1.3.tgz#bec48a42a7760b010450961c209bb4b1158b9cd6"
   integrity sha512-HXlMTPn9pnJdMju3WcwX4oEB7EOECOTzdIPaG3JEluygqzafwKLMR8BE82+64jgAxlGIWZsYl+3Ni9wuTFQeYw==
@@ -4521,6 +4521,21 @@ expo-file-system@~13.0.3:
     "@expo/config-plugins" "^4.0.2"
     expo-modules-core "~0.4.4"
     uuid "^3.4.0"
+
+expo-firebase-analytics@~5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/expo-firebase-analytics/-/expo-firebase-analytics-5.0.3.tgz#757e19b55e5b6c3287591c4682b5459392bf5780"
+  integrity sha512-/WYMm7pszHOwHwTmZDQldYdS7rXl0jqiZYBWoc/3+w4U8tW9FRc4O8XSeSwO9dahz/VCwU9Jpk1V4WCxGVRiZg==
+  dependencies:
+    expo-firebase-core "~4.0.3"
+
+expo-firebase-core@~4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/expo-firebase-core/-/expo-firebase-core-4.0.3.tgz#756508a1b957fea350c839bcc8d19b33c8ea0700"
+  integrity sha512-L8ZjYQ4urXKjBfhkE0XXd27VaHy+tWp6Ae0aKJDUQjWMSvsLSls8JZmXArN+ApEQeMmxyH8oEd/dancdYibF+w==
+  dependencies:
+    expo-constants "~12.1.1"
+    expo-modules-core "~0.4.4"
 
 expo-font@~10.0.3:
   version "10.0.3"
