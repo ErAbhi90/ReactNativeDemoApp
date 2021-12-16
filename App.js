@@ -24,7 +24,12 @@ const firebaseConfig = {
 };
 
 if (!firebase.apps.length) {
+ try {
   firebase.initializeApp(firebaseConfig);
+ } catch (error) {
+   console.log(error);
+ }
+  
 }
 
 export default function App()  {

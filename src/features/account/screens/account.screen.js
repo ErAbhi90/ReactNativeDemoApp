@@ -66,7 +66,6 @@ export const AccountScreen = ({ navigation }) => {
       </AccountContainer>
       <View style={{
         flexDirection: 'row',
-        alignContent: 'bottom',
           margin: 10,
         }}>
       <TouchableOpacity
