@@ -8,15 +8,11 @@ import {
   AuthButton,
   Title,
 } from "../components/account.styles";
-<<<<<<< HEAD
-import * as analytics from "expo-firebase-analytics";
-=======
-
 import i18n from "../../../services/translation/i18n";
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity,StyleSheet, Text, View } from "react-native";
+import * as analytics from "expo-firebase-analytics";
 
->>>>>>> 161f056d92d1f7819d5de68c3d27f715f6e4141b
 export const AccountScreen = ({ navigation }) => {
   const { t, i18n } = useTranslation();
   return (
