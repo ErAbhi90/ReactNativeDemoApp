@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import {
-  Dimensions,
   Modal,
   StyleSheet,
   Text,
@@ -10,7 +9,7 @@ import {
 } from "react-native";
 
 import { Entypo } from "@expo/vector-icons";
-import { NewsContext } from "../../services/news/context";
+import { NewsContext } from "../../../services/news/context";
 import News from "./news.component";
 
 const Search = () => {
@@ -37,7 +36,7 @@ const Search = () => {
   };
 
   return (
-    <View style={{ width: "100%", position: "relative" }}>
+    <View style={{ width: "100%", maxHeight:"80%", position: "relative" }}>
       <TextInput
         style={{
           ...styles.search,
@@ -53,7 +52,7 @@ const Search = () => {
           <TouchableOpacity
             key={n.title}
             activeOpacity={0.7}
-            onPress={() => handleModal(n)}
+           onPress={() => handleModal(n)}
           >
             <Text
               style={{
@@ -69,8 +68,8 @@ const Search = () => {
       </View>
 
       <Modal
-        animationType="slide"
-        transparent={true}
+         animationType = {"slide"}
+            transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
           setModalVisible(!modalVisible);
@@ -80,9 +79,10 @@ const Search = () => {
           onPress={() => setModalVisible(!modalVisible)}
           style={{
             position: "absolute",
-            zIndex: 1,
+            zIndex: 2,
             right: 0,
-            margin: 20,
+            margin: 10,
+            marginTop: 60,
           }}
         >
           <Entypo name="circle-with-cross" size={30} color="white" />

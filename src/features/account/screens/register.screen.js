@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import { ActivityIndicator, Colors } from "react-native-paper";
+import { useTranslation } from 'react-i18next';
 
 import {
   AccountBackground,
@@ -20,10 +21,12 @@ export const RegisterScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
   const { onRegister, isLoading, error } = useContext(AuthenticationContext);
+  const { t, i18n } = useTranslation();
+
   return (
     <AccountBackground>
       <AccountCover />
-      <Title>Demo App</Title>
+      <Title>{ t('AppName')}</Title>
       <AccountContainer>
         <AuthInput
           label="E-mail"
@@ -35,7 +38,7 @@ export const RegisterScreen = ({ navigation }) => {
         />
         <Spacer size="large">
           <AuthInput
-            label="Password"
+            label={t('Password')}
             value={password}
             textContentType="password"
             secureTextEntry
@@ -45,7 +48,7 @@ export const RegisterScreen = ({ navigation }) => {
         </Spacer>
         <Spacer size="large">
           <AuthInput
-            label="Repeat Password"
+            label={t('RepeatPass')}
             value={repeatedPassword}
             textContentType="password"
             secureTextEntry
@@ -65,7 +68,7 @@ export const RegisterScreen = ({ navigation }) => {
               mode="contained"
               onPress={() => onRegister(email, password, repeatedPassword)}
             >
-              Register
+              { t('Register')}
             </AuthButton>
           ) : (
             <ActivityIndicator animating={true} color={Colors.blue300} />
@@ -74,7 +77,7 @@ export const RegisterScreen = ({ navigation }) => {
       </AccountContainer>
       <Spacer size="large">
         <AuthButton mode="contained" onPress={() => navigation.goBack()}>
-          Back
+          { t('Back')}
         </AuthButton>
       </Spacer>
     </AccountBackground>
