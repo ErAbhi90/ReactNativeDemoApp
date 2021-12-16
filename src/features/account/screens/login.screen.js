@@ -13,15 +13,17 @@ import {
 import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-
+import { useTranslation } from 'react-i18next';
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { onLogin, error, isLoading } = useContext(AuthenticationContext);
+  const { t } = useTranslation();
+
   return (
     <AccountBackground>
       <AccountCover />
-      <Title>Demo Apps</Title>
+      <Title>{t('App.Name')}</Title>
       <AccountContainer>
         <AuthInput
           label="E-mail"
@@ -33,7 +35,7 @@ export const LoginScreen = ({ navigation }) => {
         />
         <Spacer size="large">
           <AuthInput
-            label="Password"
+            label={ t('Password')}
             value={password}
             textContentType="password"
             secureTextEntry
@@ -53,7 +55,7 @@ export const LoginScreen = ({ navigation }) => {
               mode="contained"
               onPress={() => onLogin(email, password)}
             >
-              Login
+              { t('Login')}
             </AuthButton>
           ) : (
             <ActivityIndicator animating={true} color={Colors.blue300} />
@@ -62,7 +64,7 @@ export const LoginScreen = ({ navigation }) => {
       </AccountContainer>
       <Spacer size="large">
         <AuthButton mode="contained" onPress={() => navigation.goBack()}>
-          Back
+          {t('Back')}
         </AuthButton>
       </Spacer>
     </AccountBackground>
