@@ -9,9 +9,11 @@ import {
   Title,
 } from "../components/account.styles";
 
-import i18n from '../../../services/translation/i18n';
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity,StyleSheet, Text, View } from "react-native";
+import * as analytics from "expo-firebase-analytics";
+import i18n from "../../../services/translation/i18n";
+
 
 export const AccountScreen = ({ navigation }) => {
   const { t, i18n } = useTranslation();
@@ -24,7 +26,21 @@ export const AccountScreen = ({ navigation }) => {
         <AuthButton
           icon="lock-open-outline"
           mode="contained"
-          onPress={() => navigation.navigate("Login")}
+          onPress={async () => {
+            try {
+              analytics.setDebugModeEnabled(true);
+              analytics.setUnavailabilityLogging(true);
+              await analytics.logEvent('Log_In_Event', {
+                appName: "Demo App"
+              });
+            } catch (e) {
+              console.log(e);
+            }finally{
+              navigation.navigate("Login")
+            }
+            
+           
+          }}
         >
           {t('Login') }
         </AuthButton>
@@ -32,7 +48,21 @@ export const AccountScreen = ({ navigation }) => {
           <AuthButton
             icon="email"
             mode="contained"
-            onPress={() => navigation.navigate("Register")}
+            onPress={async () => {
+              try {
+                analytics.setDebugModeEnabled(true);
+                analytics.setUnavailabilityLogging(true);
+                await analytics.logEvent('Register_Event', {
+                  appName: "Demo App"
+                });
+              } catch (e) {
+                console.log(e);
+              }finally{
+                navigation.navigate("Register")
+              }
+          
+             
+            }}
           >
             {t('Register') }
           </AuthButton>

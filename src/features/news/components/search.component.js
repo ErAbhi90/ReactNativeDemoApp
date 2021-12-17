@@ -36,7 +36,7 @@ const Search = () => {
   };
 
   return (
-    <View style={{ width: "100%", maxHeight:"80%", position: "relative" }}>
+    <View style={{ width: "100%", maxHeight:"80%", position: "relative", zIndex: 10 }}>
       <TextInput
         style={{
           ...styles.search,

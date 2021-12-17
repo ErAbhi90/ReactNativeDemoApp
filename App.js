@@ -19,14 +19,20 @@ const firebaseConfig = {
   projectId: "mealstogo-5fdee",
   storageBucket: "mealstogo-5fdee.appspot.com",
   messagingSenderId: "461156744270",
-  appId: "1:461156744270:web:0a3d9737a24acc9606571f"
+  appId: "1:461156744270:web:0a3d9737a24acc9606571f",
+  measurementId: "G-275M5W1Z8Q"
 };
 
 if (!firebase.apps.length) {
+ try {
   firebase.initializeApp(firebaseConfig);
+ } catch (error) {
+   console.log(error);
+ }
+  
 }
 
-export default function App() {
+export default function App()  {
   const [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });
@@ -34,6 +40,7 @@ export default function App() {
   const [latoLoaded] = useLato({
     Lato_400Regular,
   });
+ 
 
   if (!oswaldLoaded || !latoLoaded) {
     return null;

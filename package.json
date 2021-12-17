@@ -7,22 +7,30 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest",
+    "lint": "eslint . --ext js,jsx",
+    "lint:fix": "eslint . --ext js,jsx --fix"
   },
   "dependencies": {
     "@expo-google-fonts/lato": "^0.1.0",
     "@expo-google-fonts/oswald": "^0.1.0",
     "@react-native-async-storage/async-storage": "^1.15.14",
     "@react-native-community/clipboard": "^1.5.1",
+    "@react-native-community/masked-view": "0.1.10",
+    "@react-native-firebase/app": "^14.0.1",
     "@react-navigation/bottom-tabs": "^5.11.2",
     "@react-navigation/native": "^5.8.10",
     "@react-navigation/stack": "^5.12.8",
     "axios": "^0.24.0",
-    "expo": "~43.0.2",
+    "expo": "^43.0.4",
     "expo-clipboard": "~2.0.3",
+    "expo-firebase-analytics": "~5.0.3",
+    "expo-sqlite": "~10.0.3",
     "expo-status-bar": "~1.1.0",
     "firebase": "7.9.0",
     "i18next": "^21.6.0",
+    "mermaid": "^8.13.5",
     "packages": "^0.0.8",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -39,12 +47,17 @@
     "react-native-svg": "12.1.1",
     "react-native-tab-view": "^3.1.1",
     "react-native-vector-icons": "^9.0.0",
-    "react-native-web": "~0.13.12",
+    "react-native-web": "0.17.1",
     "react-native-webview": "11.13.0",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "@babel/eslint-parser": "^7.5.4",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.27.1",
+    "jest": "^27.4.5"
   },
   "private": true
 }

@@ -14,6 +14,7 @@ import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { useTranslation } from 'react-i18next';
+import * as analytics from "expo-firebase-analytics";
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +24,7 @@ export const LoginScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
-      <Title>{t('App.Name')}</Title>
+      <Title>{t('AppName')}</Title>
       <AccountContainer>
         <AuthInput
           label="E-mail"
@@ -53,7 +54,21 @@ export const LoginScreen = ({ navigation }) => {
             <AuthButton
               icon="lock-open-outline"
               mode="contained"
-              onPress={() => onLogin(email, password)}
+              onPress={ async () => {
+                try {
+                  analytics.setDebugModeEnabled(true);
+                  analytics.setUnavailabilityLogging(true);
+                  await analytics.logEvent('Tap_Login_Event', {
+                  email: email
+                });
+                } catch (error) {
+                  console.log(error);
+                } finally{
+                  onLogin(email, password);
+                }
+                
+              } 
+            }
             >
               { t('Login')}
             </AuthButton>
