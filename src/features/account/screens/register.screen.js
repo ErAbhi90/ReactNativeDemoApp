@@ -15,7 +15,7 @@ import {
 import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-
+import * as analytics from "expo-firebase-analytics";
 export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -66,7 +66,17 @@ export const RegisterScreen = ({ navigation }) => {
             <AuthButton
               icon="email"
               mode="contained"
-              onPress={() => onRegister(email, password, repeatedPassword)}
+              onPress={ async() => {
+                try {
+                  await analytics.logEvent('Register_Event', {
+                    action: "Tap_Register_Button"
+                  });
+                } catch (error) {
+                  console.log(error);
+                }finally {
+                  onRegister(email, password, repeatedPassword)
+                }
+              }}
             >
               { t('Register')}
             </AuthButton>
@@ -76,7 +86,17 @@ export const RegisterScreen = ({ navigation }) => {
         </Spacer>
       </AccountContainer>
       <Spacer size="large">
-        <AuthButton mode="contained" onPress={() => navigation.goBack()}>
+        <AuthButton mode="contained" onPress={async() => {
+           try {
+            await analytics.logEvent('Back_From_Register_Screen', {
+              action: "Tap_Back_Button"
+            });
+          } catch (error) {
+            console.log(error);
+          }finally {
+            navigation.goBack();
+          }
+        }}>
           { t('Back')}
         </AuthButton>
       </Spacer>

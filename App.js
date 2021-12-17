@@ -12,7 +12,7 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
-
+import * as analytics from "expo-firebase-analytics";
 const firebaseConfig = {
   apiKey: "AIzaSyABgPJ4Bvf6ZIgC0t1OEOoJDZSZ-GvYjac",
   authDomain: "mealstogo-5fdee.firebaseapp.com",
@@ -25,7 +25,11 @@ const firebaseConfig = {
 
 if (!firebase.apps.length) {
  try {
+   
   firebase.initializeApp(firebaseConfig);
+  analytics.setDebugModeEnabled(true);
+  analytics.setUnavailabilityLogging(true);
+
  } catch (error) {
    console.log(error);
  }
