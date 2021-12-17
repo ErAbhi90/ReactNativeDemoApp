@@ -11,15 +11,6 @@ import { NewsContext } from "../../services/news/context";
 
 const Tab = createBottomTabNavigator();
 
-const Settings = () => {
-  const { onLogout } = useContext(AuthenticationContext);
-  return (
-    <SafeArea>
-      <Text>Settings</Text>
-      <Button title="Logout" onPress={() => onLogout()} />
-    </SafeArea>
-  );
-};
 const Tabs = () => {
   const layout = useWindowDimensions();
 
@@ -28,13 +19,11 @@ const Tabs = () => {
   const [routes] = useState([
     { key: "first", title: "Search" },
     { key: "second", title: "News" },
-    { key: "third", title: "Settings" },
   ]);
 
   const renderScene = SceneMap({
     first: SearchScreen,
     second: NewsScreen,
-    third: Settings,
   });
 
   return (
@@ -47,7 +36,7 @@ const Tabs = () => {
           initialLayout={{ width: layout.width }}
           renderTabBar={() => (
             <TabNavigation index={index} setIndex={setIndex}>
-              <Tab.Screen name="Setting" component={Settings} />
+              <Tab.Screen />
             </TabNavigation>
           )}/>
       </SafeArea>
