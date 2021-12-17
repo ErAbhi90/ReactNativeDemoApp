@@ -36,7 +36,7 @@ export const LoginScreen = ({ navigation }) => {
         />
         <Spacer size="large">
           <AuthInput
-            label={ t('Password')}
+            label={t('Password')}
             value={password}
             textContentType="password"
             secureTextEntry
@@ -54,23 +54,21 @@ export const LoginScreen = ({ navigation }) => {
             <AuthButton
               icon="lock-open-outline"
               mode="contained"
-              onPress={ async () => {
+              onPress={async () => {
                 try {
-                  analytics.setDebugModeEnabled(true);
-                  analytics.setUnavailabilityLogging(true);
-                  await analytics.logEvent('Tap_Login_Event', {
-                  email: email
-                });
+                  await analytics.logEvent('Login_Event', {
+                    email: email
+                  });
                 } catch (error) {
                   console.log(error);
-                } finally{
+                } finally {
                   onLogin(email, password);
                 }
-                
-              } 
-            }
+
+              }
+              }
             >
-              { t('Login')}
+              {t('Login')}
             </AuthButton>
           ) : (
             <ActivityIndicator animating={true} color={Colors.blue300} />
@@ -78,7 +76,18 @@ export const LoginScreen = ({ navigation }) => {
         </Spacer>
       </AccountContainer>
       <Spacer size="large">
-        <AuthButton mode="contained" onPress={() => navigation.goBack()}>
+        <AuthButton mode="contained" onPress={async () => {
+          try {
+            await analytics.logEvent('Back_Event', {
+              action: "Tap_Back_Button"
+            });
+          } catch (error) {
+            console.log(error);
+          } finally {
+            navigation.goBack();
+          }
+
+        }}>
           {t('Back')}
         </AuthButton>
       </Spacer>
