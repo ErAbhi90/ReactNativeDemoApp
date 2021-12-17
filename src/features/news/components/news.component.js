@@ -1,30 +1,36 @@
-import React from "react";
+import React, {useContext} from "react";
 import {
   Dimensions,
   Image,
   Linking,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 
-import * as Clipboard from 'expo-clipboard';
+import * as Clipboard from "expo-clipboard";
+import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 //import Clipboard from "@react-native-community/clipboard";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
-const copyToClipboard = value => {
+const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 130 : StatusBar.currentHeight;
+
+const copyToClipboard = (value) => {
   Clipboard.setString(value);
-  alert('Copied to Clipboard! \n' +value);
+  alert("Copied to Clipboard! \n" + value);
 };
 
+
 const News = ({ item, index, darkTheme }) => {
+  const { onLogout } = useContext(AuthenticationContext);
   return (
     <View
       style={{
-        height: windowHeight - 130.0,
+        height: windowHeight - STATUSBAR_HEIGHT,
         width: windowWidth,
         marginBottom: 50.0,
         transform: [{ scaleY: -1 }],
@@ -32,7 +38,7 @@ const News = ({ item, index, darkTheme }) => {
     >
       <Image
         source={{ uri: item.urlToImage }}
-        style={{ height: "45%", resizeMode: "cover", width: windowWidth }}
+        style={{ height: "30%", resizeMode: "cover", width: windowWidth }}
       />
       <View
         style={{
@@ -61,22 +67,36 @@ const News = ({ item, index, darkTheme }) => {
           </Text>
         </Text>
       </View>
+
       <View style={styles.footer}>
-        <TouchableOpacity onPress={() => Linking.openURL(item.url)}>
-          <Text style={{ fontSize: 15, color: "white" }}>
+         <Text style={{ fontSize: 15, color: "white" }}>
             '{item?.content?.slice(0, 45)}...'
           </Text>
-          <Text
-            style={{
-              fontSize: 16,
-              fontWeight: "bold",
-              color: "red",
-              textAlign: "right",
-            }}
-          >
-            Read More
-          </Text>
-        </TouchableOpacity>
+          <View style={styles.row}>
+          <TouchableOpacity onPress={() => Linking.openURL(item.url)}>
+        
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "bold",
+                color: "red",
+                textAlign: "left",
+              }}
+            >
+              Read More
+            </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => onLogout()}
+              style={styles.roundButton1}
+            >
+              <Text  style={{
+                fontWeight: "bold",
+                color: "white",
+              }}>Logout</Text>
+            </TouchableOpacity>
+          </View>
+        
       </View>
     </View>
   );
@@ -96,6 +116,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   content: { fontSize: 18, paddingVertical: 10 },
+  row: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent:'space-between'
+  },
   footer: {
     height: 80,
     width: windowWidth,
@@ -104,5 +129,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#A9A9A9",
     justifyContent: "center",
     paddingHorizontal: 20,
+  },
+  roundButton1: {
+    width: 70,
+    height: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 5,
+    borderRadius: 20,
+    backgroundColor: "red",
   },
 });

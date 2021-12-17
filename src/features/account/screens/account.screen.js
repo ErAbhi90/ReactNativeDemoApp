@@ -38,7 +38,6 @@ export const AccountScreen = ({ navigation }) => {
             }finally{
               navigation.navigate("Login")
             }
-            
            
           }}
         >

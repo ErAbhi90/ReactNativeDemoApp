@@ -36,7 +36,7 @@ const Search = () => {
   };
 
   return (
-    <View style={{ width: "100%", maxHeight:"80%", position: "relative", zIndex: 10 }}>
+    <View style={{ width: "100%", maxHeight:"100%", position: "relative", zIndex: 10 }}>
       <TextInput
         style={{
           ...styles.search,
@@ -81,11 +81,11 @@ const Search = () => {
             position: "absolute",
             zIndex: 2,
             right: 0,
-            margin: 10,
-            marginTop: 60,
+            margin: 5,
+            marginTop: 100,
           }}
         >
-          <Entypo name="circle-with-cross" size={30} color="white" />
+          <Entypo name="circle-with-cross" size={30} color={darkTheme ? "white" : "black"} />
         </TouchableOpacity>
         <View style={{ height: "100%", transform: [{ scaleY: -1 }] }}>
           <News item={currentNews} darkTheme={darkTheme} />

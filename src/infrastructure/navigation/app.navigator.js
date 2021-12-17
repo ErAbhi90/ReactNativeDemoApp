@@ -6,14 +6,14 @@ import {NewsContext} from "../../services/news/context";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight
   },
 });
 
 export const AppNavigator = () => {
 
   const {darkTheme} = useContext(NewsContext)
-console.log(StatusBar.currentHeight);
+  //console.log(StatusBar.currentHeight);
+
   return (
     
       <View style={{
