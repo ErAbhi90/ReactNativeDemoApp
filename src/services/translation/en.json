@@ -1,0 +1,8 @@
+{
+    "AppName": "Demo App",
+    "Login": "LOGIN",
+    "Register": "REGISTER",
+    "Back": "Back",
+    "Password": "Password",
+    "RepeatPass":"Repeat Password"
+}
