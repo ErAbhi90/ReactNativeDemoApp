@@ -12,7 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity,StyleSheet, Text, View } from "react-native";
 import * as analytics from "expo-firebase-analytics";
-//import i18n from "../../../services/translation/i18n";
+import i18n from "../../../services/translation/i18n";
 
 
 export const AccountScreen = ({ navigation }) => {
