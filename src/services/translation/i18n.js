@@ -1,43 +1,28 @@
-import i18n from "i18next";
+import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
+import english from './en.json'
+import french from './fr.json'
 
-// the translations
-// (tip move them in a JSON file and import them,
-// or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
-const resources = {
-  en: {
-    translation: {
-        "AppName": "Demo App",
-        "Login": "LOGIN",
-        "Register": "REGISTER",
-        "Back": "Back",
-          "Password": "Password",
-        "RepeatPass":"Repeat Password"
-    }
-  },
-  fr: {
-    translation: {
-        "AppName": "Démo App",
-        "Login": "Connexion",
-        "Register": "S'inscrire",
-        "Back": "Retour",
-        "Password": "Mot de passe",
-        "RepeatPass": "Répéter le mot de passe"
-    }
-  }
-};
-
-i18n
+i18next
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
-    resources,
-    lng: "en", // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
-    // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
-    // if you're using a language detector, do not define the lng option
+    initImmediate: false,
+    compatibilityJSON: 'v3',
+  lng: 'en',
+  resources: {
+     en: {
+      translation: english, //changed here
+    },
+    al: {
+      translation: french, //changed here
+    },
+  },
+  react: {
+    useSuspense: false
+  },
+  interpolation: {
+    escapeValue: false // react already safes from xss
+  }
+});
 
-    interpolation: {
-      escapeValue: false // react already safes from xss
-    }
-  });
-
-  export default i18n;
+export default i18next;

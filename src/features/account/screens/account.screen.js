@@ -9,12 +9,13 @@ import {
   Title,
 } from "../components/account.styles";
 
-import i18n from "../../../services/translation/i18n";
+import '../../../services/translation/i18n';
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity,StyleSheet, Text, View } from "react-native";
 
 export const AccountScreen = ({ navigation }) => {
-  const { t, i18n } = useTranslation();
+  const { t, i18next } = useTranslation();
+
   return (
     <AccountBackground>
       <AccountCover />
@@ -39,16 +40,15 @@ export const AccountScreen = ({ navigation }) => {
       </AccountContainer>
       <View style={{
         flexDirection: 'row',
-        alignContent: 'bottom',
           margin: 10,
         }}>
       <TouchableOpacity
-          onPress={() => i18n.changeLanguage('en')} //Here I change the language to "en" English
+          onPress={() => i18next.changeLanguage('en')} //Here I change the language to "en" English
           style={Styles.button}>
           <Text style={{color: '#fff'}}>EN</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => i18n.changeLanguage('fr')} //Here I change the language to "es" Spanish
+          onPress={() => i18next.changeLanguage('fr')} //Here I change the language to "es" Spanish
           style={Styles.button}>
           <Text style={{color: '#fff'}}>Fr</Text>
         </TouchableOpacity>
