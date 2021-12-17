@@ -1,7 +1,7 @@
 import React, { useState, createContext } from "react";
 import * as firebase from "firebase";
 
-import { loginRequest } from "./authentication.service";
+import { loginRequest, createUserRequest, signOutRequest } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
 
@@ -40,9 +40,7 @@ export const AuthenticationContextProvider = ({ children }) => {
       setError("Error: Passwords do not match");
       return;
     }
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
+    createUserRequest(email, password)
       .then((u) => {
         setUser(u);
         setIsLoading(false);
@@ -54,9 +52,7 @@ export const AuthenticationContextProvider = ({ children }) => {
   };
 
   const onLogout = () => {
-    firebase
-      .auth()
-      .signOut()
+    signOutRequest()
       .then(() => {
         setUser(null);
         setError(null);
