@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 export const AppNavigator = () => {
 
   const {darkTheme} = useContext(NewsContext)
-
+console.log(StatusBar.currentHeight);
   return (
     
       <View style={{

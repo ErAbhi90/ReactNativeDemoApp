@@ -9,14 +9,22 @@ import {
   View,
 } from "react-native";
 
+import * as Clipboard from 'expo-clipboard';
+//import Clipboard from "@react-native-community/clipboard";
+
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
+
+const copyToClipboard = value => {
+  Clipboard.setString(value);
+  alert('Copied to Clipboard! \n' +value);
+};
 
 const News = ({ item, index, darkTheme }) => {
   return (
     <View
       style={{
-        height: windowHeight-130.0,
+        height: windowHeight - 130.0,
         width: windowWidth,
         marginBottom: 50.0,
         transform: [{ scaleY: -1 }],
@@ -32,30 +40,40 @@ const News = ({ item, index, darkTheme }) => {
           backgroundColor: darkTheme ? "#282C35" : "white",
         }}
       >
-        <Text style={{ ...styles.title, color: darkTheme ? "white" : "black" }}>
-          {item.title}
-        </Text>
+        <TouchableOpacity onLongPress={copyToClipboard.bind(this, item.title)}>
+          <Text
+            style={{ ...styles.title, color: darkTheme ? "white" : "black" }}
+          >
+            {item.title}
+          </Text>
+        </TouchableOpacity>
+
         <Text
           style={{ ...styles.content, color: darkTheme ? "white" : "black" }}
         >
           {item.description}
         </Text>
         <Text style={{ color: darkTheme ? "white" : "black" }}>
-          Author: 
+          Author:
           <Text style={{ fontWeight: "bold" }}>
             {" "}
             {item.author ?? "unknown"}
           </Text>
         </Text>
       </View>
-      <View
-        style={styles.footer}
-      >
+      <View style={styles.footer}>
         <TouchableOpacity onPress={() => Linking.openURL(item.url)}>
           <Text style={{ fontSize: 15, color: "white" }}>
             '{item?.content?.slice(0, 45)}...'
           </Text>
-          <Text style={{ fontSize: 16, fontWeight: "bold", color: "red", textAlign:"right" }}>
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: "bold",
+              color: "red",
+              textAlign: "right",
+            }}
+          >
             Read More
           </Text>
         </TouchableOpacity>

@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.17/libexec/bin/yarn.js
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.17/libexec/bin/yarn.js install
 
 PATH: 
   /usr/local/sbin:/Users/nareshchinni/bin:/Volumes/MacintoshHD-Data/AndroidSDK/tools:/Volumes/MacintoshHD-Data/AndroidSDK/platform-tools:/Users/nareshchinni/.tgenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Volumes/MacintoshHD-Data/AndroidSDK:/.pub-cache/bin:/Volumes/MacintoshHD-Data/flutterSDK/bin:/Volumes/MacintoshHD-Data/flutterSDK/bin/cache/dart-sdk:/Volumes/MacintoshHD-Data/AndroidSDK/platform-tools:/Volumes/MacintoshHD-Data/AndroidSDK/tools:/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home:/usr/local/share/dotnet:/opt/X11/bin:~/.dotnet/tools:/Library/Apple/usr/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/local/sbin:/Users/nareshchinni/bin:/Users/nareshchinni/.tgenv/bin:/Users/nareshchinni/.pub-cache/bin: /Volumes/MacintoshHD-Data/flutterSDK/bin: /Volumes/MacintoshHD-Data/AndroidSDK: /Volumes/MacintoshHD-Data/flutterSDK/bin/cache/dart-sdk:/Users/nareshchinni/.pub-cache/bin: /Volumes/MacintoshHD-Data/flutterSDK/bin: /Volumes/MacintoshHD-Data/AndroidSDK: /Volumes/MacintoshHD-Data/flutterSDK/bin/cache/dart-sdk
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  SyntaxError: /Volumes/MacintoshHD-Data/ReactPojects/demo-app/package.json: Unexpected string in JSON at position 282
+  SyntaxError: /Volumes/MacintoshHD-Data/ReactPojects/demo-app/package.json: Unexpected token < in JSON at position 471
       at JSON.parse (<anonymous>)
       at /usr/local/Cellar/yarn/1.22.17/libexec/lib/cli.js:1625:59
       at Generator.next (<anonymous>)
@@ -32,22 +32,32 @@ npm manifest:
       "ios": "expo start --ios",
       "web": "expo start --web",
       "eject": "expo eject",
-      "test": "jest"
+      "test": "jest",
       "lint": "eslint . --ext js,jsx",
       "lint:fix": "eslint . --ext js,jsx --fix"
     },
     "dependencies": {
       "@expo-google-fonts/lato": "^0.1.0",
       "@expo-google-fonts/oswald": "^0.1.0",
-      "@react-native-async-storage/async-storage": "~1.15.0",
-      "@react-native-community/async-storage": "^1.12.1",
+  <<<<<<< HEAD
+      "@react-native-async-storage/async-storage": "^1.15.14",
+      "@react-native-community/clipboard": "^1.5.1",
+  =======
       "@react-native-community/masked-view": "0.1.10",
+      "@react-native-firebase/app": "^14.0.1",
+  >>>>>>> master
       "@react-navigation/bottom-tabs": "^5.11.2",
       "@react-navigation/native": "^5.8.10",
       "@react-navigation/stack": "^5.12.8",
       "axios": "^0.24.0",
+  <<<<<<< HEAD
       "expo": "~43.0.2",
+      "expo-clipboard": "~2.0.3",
+  =======
+      "expo": "^43.0.4",
+      "expo-firebase-analytics": "~5.0.3",
       "expo-sqlite": "~10.0.3",
+  >>>>>>> master
       "expo-status-bar": "~1.1.0",
       "firebase": "7.9.0",
       "mermaid": "^8.13.5",
@@ -60,20 +70,25 @@ npm manifest:
       "react-native-gesture-handler": "~1.10.2",
       "react-native-maps": "0.28.1",
       "react-native-pager-view": "5.4.6",
-      "react-native-paper": "^4.5.0",
+      "react-native-paper": "^4.11.1",
       "react-native-reanimated": "~2.2.0",
       "react-native-safe-area-context": "3.3.2",
-      "react-native-screens": "~2.15.0",
+      "react-native-screens": "~3.8.0",
       "react-native-snap-carousel": "^3.9.1",
       "react-native-svg": "12.1.1",
       "react-native-tab-view": "^3.1.1",
+  <<<<<<< HEAD
+      "react-native-vector-icons": "^9.0.0",
       "react-native-web": "~0.13.12",
+  =======
+      "react-native-web": "0.17.1",
+  >>>>>>> master
       "react-native-webview": "11.13.0",
       "styled-components": "^5.3.3"
     },
     "devDependencies": {
       "@babel/core": "^7.12.9",
-      "jest": "^27.4.5"
+      "jest": "^27.4.5",
       "@babel/eslint-parser": "^7.5.4",
       "eslint": "^8.4.1",
       "eslint-config-prettier": "^8.3.0",
