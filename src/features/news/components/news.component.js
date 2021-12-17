@@ -8,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Platform
 } from "react-native";
 
 import * as Clipboard from "expo-clipboard";
@@ -25,7 +26,7 @@ const copyToClipboard = (value) => {
 };
 
 
-const News = ({ item, index, darkTheme }) => {
+const News = ({ item, darkTheme }) => {
   const { onLogout } = useContext(AuthenticationContext);
   return (
     <View
@@ -69,8 +70,8 @@ const News = ({ item, index, darkTheme }) => {
       </View>
 
       <View style={styles.footer}>
-         <Text style={{ fontSize: 15, color: "white" }}>
-            '{item?.content?.slice(0, 45)}...'
+        <Text style={{ fontSize: 15, color: "white" }}>
+            `&apos;`{item?.content?.slice(0, 45)}...`&apos;`
           </Text>
           <View style={styles.row}>
           <TouchableOpacity onPress={() => Linking.openURL(item.url)}>

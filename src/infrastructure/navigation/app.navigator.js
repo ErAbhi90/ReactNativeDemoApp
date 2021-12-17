@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { StyleSheet, View, StatusBar } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Tabs from "../..//components/tabs/tabs.component";
 import {NewsContext} from "../../services/news/context";
 

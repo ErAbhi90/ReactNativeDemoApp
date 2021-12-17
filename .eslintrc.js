@@ -10,13 +10,17 @@ module.exports = {
 	"plugins": ["react", "jest", "react-hooks"],
 	"env": {
 		"browser": true,
-		"jest": true
+		"jest": true,
+		"node": true
 	},
 	"globals": {
 		"rootRequire": true,
 		"io": true,
 		"BigInt": true
 	},
+	"settings": {
+    "import/ignore": ["react-native"]
+  },
 	"rules": {
         "react/react-in-jsx-scope": "off",
         "react/jsx-filename-extension": [
@@ -28,7 +32,8 @@ module.exports = {
                 ]
             }
         ],
-        "react/display-name": 1,
+		"react/display-name": 1,
+		"react/prop-types": "off"
 		// "key-spacing": 0,
 		// "jsx-quotes": [2, "prefer-double"],
 		// "max-len": [2, 160, 2],
