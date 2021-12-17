@@ -24,7 +24,7 @@ export const LoginScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
-      <Title>{t('App.Name')}</Title>
+      <Title>{t('AppName')}</Title>
       <AccountContainer>
         <AuthInput
           label="E-mail"
