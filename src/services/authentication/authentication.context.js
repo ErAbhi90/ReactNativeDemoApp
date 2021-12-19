@@ -2,7 +2,7 @@ import React, { useState, createContext } from "react";
 import * as firebase from "firebase";
 
 import { loginRequest, createUserRequest, signOutRequest } from "./authentication.service";
-
+import * as Analytics from "expo-firebase-analytics"
 export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children }) => {
@@ -25,6 +25,7 @@ export const AuthenticationContextProvider = ({ children }) => {
       .then((u) => {
         console.log(u);
         setUser(u);
+        Analytics.setUserId(u.email)
         setIsLoading(false);
       })
       .catch((e) => {
@@ -43,6 +44,7 @@ export const AuthenticationContextProvider = ({ children }) => {
     createUserRequest(email, password)
       .then((u) => {
         setUser(u);
+        Analytics.setUserId(u.email)
         setIsLoading(false);
       })
       .catch((e) => {
@@ -54,11 +56,14 @@ export const AuthenticationContextProvider = ({ children }) => {
   const onLogout = () => {
     signOutRequest()
       .then(() => {
-        setUser(null);
-        setError(null);
+        resetData();
       });
   };
-
+  const resetData = () => {
+    setUser(null);
+    setError(null);
+    Analytics.resetAnalyticsData;
+  }
   return (
     <AuthenticationContext.Provider
       value={{
@@ -69,6 +74,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         onLogin,
         onRegister,
         onLogout,
+        resetData,
       }}
     >
       {children}

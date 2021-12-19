@@ -10,12 +10,13 @@ import {
 } from "../components/account.styles";
 
 import { useTranslation } from 'react-i18next';
-import { TouchableOpacity,StyleSheet, Text, View } from "react-native";
-import * as analytics from "expo-firebase-analytics";
+import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
+import * as Analytics from "expo-firebase-analytics";
 import i18n from "../../../services/translation/i18n";
 
 
 export const AccountScreen = ({ navigation }) => {
+ 
   const { t, i18n } = useTranslation();
 
   return (
@@ -28,20 +29,18 @@ export const AccountScreen = ({ navigation }) => {
           mode="contained"
           onPress={async () => {
             try {
-              analytics.setDebugModeEnabled(true);
-              analytics.setUnavailabilityLogging(true);
-              await analytics.logEvent('Log_In_Event', {
-                appName: "Demo App"
+              await Analytics.logEvent('Tap_Login_Button', {
+                screen: "Account Screen",
               });
             } catch (e) {
               console.log(e);
-            }finally{
+            } finally {
               navigation.navigate("Login")
             }
-           
+
           }}
         >
-          {t('Login') }
+          {t('Login')}
         </AuthButton>
         <Spacer size="large">
           <AuthButton
@@ -49,39 +48,48 @@ export const AccountScreen = ({ navigation }) => {
             mode="contained"
             onPress={async () => {
               try {
-                analytics.setDebugModeEnabled(true);
-                analytics.setUnavailabilityLogging(true);
-                await analytics.logEvent('Register_Event', {
-                  appName: "Demo App"
+                await Analytics.logEvent('Tap_Register_Button', {
+                  screen: "Account Screen",
                 });
               } catch (e) {
                 console.log(e);
-              }finally{
+              } finally {
                 navigation.navigate("Register")
               }
-          
-             
             }}
           >
-            {t('Register') }
+            {t('Register')}
           </AuthButton>
         </Spacer>
       </AccountContainer>
       <View style={{
         flexDirection: 'row',
-          margin: 10,
-        }}>
-      <TouchableOpacity
-          onPress={() => i18n.changeLanguage('en')} //Here I change the language to "en" English
+        margin: 10,
+      }}>
+        <TouchableOpacity
+          onPress={async () => {
+            await Analytics.logEvent('Tap_EN_Button', {
+              screen: "Account Screen",
+              action: "Switch To English",
+            });
+            i18n.changeLanguage('en');
+          }
+          } //Here I change the language to "en" English
           style={Styles.button}>
-          <Text style={{color: '#fff'}}>EN</Text>
+          <Text style={{ color: '#fff' }}>EN</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => i18n.changeLanguage('fr')} //Here I change the language to "es" Spanish
+          onPress={async () => {
+            await Analytics.logEvent('Tap_FR_Button', {
+              screen: "Account Screen",
+              action: "Switch To French",
+            });
+            i18n.changeLanguage('fr');
+          }} //Here I change the language to "es" Spanish
           style={Styles.button}>
-          <Text style={{color: '#fff'}}>Fr</Text>
+          <Text style={{ color: '#fff' }}>Fr</Text>
         </TouchableOpacity>
-        </View>
+      </View>
     </AccountBackground>
   );
 };

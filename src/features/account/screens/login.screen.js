@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { ActivityIndicator, Colors } from "react-native-paper";
 
 import {
@@ -14,13 +14,15 @@ import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { useTranslation } from 'react-i18next';
-import * as analytics from "expo-firebase-analytics";
+import * as Analytics from "expo-firebase-analytics";
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { onLogin, error, isLoading } = useContext(AuthenticationContext);
+  const { onLogin, error, isLoading, resetData } = useContext(AuthenticationContext);
   const { t } = useTranslation();
-
+  useEffect(() => {
+    resetData();
+  }, []);
   return (
     <AccountBackground>
       <AccountCover />
@@ -56,9 +58,11 @@ export const LoginScreen = ({ navigation }) => {
               mode="contained"
               onPress={async () => {
                 try {
-                  await analytics.logEvent('Login_Event', {
-                    email: email
-                  });
+                  await Analytics.logEvent('Tap_Login_Button',
+                    {
+                      screen: "Login_Screen",
+                      email: email
+                    });
                 } catch (error) {
                   console.log(error);
                 } finally {
@@ -78,9 +82,12 @@ export const LoginScreen = ({ navigation }) => {
       <Spacer size="large">
         <AuthButton mode="contained" onPress={async () => {
           try {
-            await analytics.logEvent('Back_Event', {
-              action: "Tap_Back_Button"
-            });
+            await Analytics.logEvent('Tap_Back_Button',
+              {
+                screen: "Login_Screen",
+
+              });
+
           } catch (error) {
             console.log(error);
           } finally {
