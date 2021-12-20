@@ -1,10 +1,8 @@
 import React, { useContext, useState } from "react";
 import {
   Dimensions,
-  Text,
   View,
   StyleSheet,
-  TouchableOpacity,
 } from "react-native";
 import Carousel from "react-native-snap-carousel";
 import News from "../../news/components/news.component";
@@ -16,7 +14,8 @@ const NewsScreen = () => {
     darkTheme,
   } = useContext(NewsContext);
 
-  const [activeIndex, setActiveIndex] = useState();
+// eslint-disable-next-line
+  const [activeIndex, setActiveIndex] = useState(); 
 
   const windowHeight = Dimensions.get("window").height;
 

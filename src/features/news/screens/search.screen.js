@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
-import axios from "axios";
 import {
   Dimensions,
   Image,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -31,7 +29,7 @@ const SearchScreen = () => {
       <FlatList
         horizontal
         data={categories}
-        renderItem={({ item, index }) => {
+        renderItem={({ item }) => {
           return (
             <TouchableOpacity
               onPress={() => setCategory(item.name)}

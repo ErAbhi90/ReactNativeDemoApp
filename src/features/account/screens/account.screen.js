@@ -16,8 +16,7 @@ import i18n from "../../../services/translation/i18n";
 
 
 export const AccountScreen = ({ navigation }) => {
- 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <AccountBackground>

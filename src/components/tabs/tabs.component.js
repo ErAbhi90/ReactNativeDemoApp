@@ -1,10 +1,9 @@
 import React, { useState, useContext } from "react";
-import { Text, Button, useWindowDimensions } from "react-native";
+import { useWindowDimensions } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SceneMap, TabView } from "react-native-tab-view";
 import { SafeArea } from "../utility/safe-area.component";
 import TabNavigation from "./tab-navigation.component";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import SearchScreen from "../../features/news/screens/search.screen";
 import NewsScreen from "../../features/news/screens/news.screen";
 import { NewsContext } from "../../services/news/context";

@@ -21,10 +21,11 @@ export const RegisterScreen = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
   const { onRegister, isLoading, error, resetData } = useContext(AuthenticationContext);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   useEffect(() => {
     resetData();
   }, []);
+
   return (
     <AccountBackground>
       <AccountCover />
