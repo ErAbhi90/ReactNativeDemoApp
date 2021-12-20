@@ -16,12 +16,14 @@ import { Text } from "../../../components/typography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import * as analytics from "expo-firebase-analytics";
+import { TouchableOpacity, StyleSheet, View, Text as Reacttext } from "react-native";
+
 export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
   const { onRegister, isLoading, error, resetData } = useContext(AuthenticationContext);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   useEffect(() => {
     resetData();
   }, []);
@@ -103,6 +105,43 @@ export const RegisterScreen = ({ navigation }) => {
           { t('Back')}
         </AuthButton>
       </Spacer>
+      <View style={{
+        flexDirection: 'row',
+        margin: 10,
+      }}>
+        <TouchableOpacity
+          onPress={async () => {
+            await analytics.logEvent('Tap_EN_Button', {
+              screen: "Account Screen",
+              action: "Switch To English",
+            });
+            i18n.changeLanguage('en');
+          }
+          } //Here I change the language to "en" English
+          style={Styles.button}>
+          <Reacttext style={{ color: '#fff' }}>EN</Reacttext>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={async () => {
+            await analytics.logEvent('Tap_FR_Button', {
+              screen: "Account Screen",
+              action: "Switch To French",
+            });
+            i18n.changeLanguage('fr');
+          }} //Here I change the language to "es" Spanish
+          style={Styles.button}>
+          <Reacttext style={{ color: '#fff' }}>Fr</Reacttext>
+        </TouchableOpacity>
+      </View>
     </AccountBackground>
   );
 };
+
+const Styles = StyleSheet.create({
+  button: {
+    backgroundColor: '#61e3a5',
+    padding: 10,
+    borderRadius: 100,
+    margin: 10,
+  },
+});
