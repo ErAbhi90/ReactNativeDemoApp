@@ -13,7 +13,7 @@ import {
 
 import * as Clipboard from "expo-clipboard";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
-//import Clipboard from "@react-native-community/clipboard";
+import * as Analytic from "expo-firebase-analytics"
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -74,7 +74,14 @@ const News = ({ item, darkTheme }) => {
             `&apos;`{item?.content?.slice(0, 45)}...`&apos;`
           </Text>
           <View style={styles.row}>
-          <TouchableOpacity onPress={() => Linking.openURL(item.url)}>
+          <TouchableOpacity onPress={ async() => {
+             await Analytic.logEvent('Tap_News_Link_Button',
+             {
+               screen: "News_Screen",
+               link: item.url
+             });
+            Linking.openURL(item.url);
+            }}>
         
             <Text
               style={{
@@ -88,7 +95,13 @@ const News = ({ item, darkTheme }) => {
             </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => onLogout()}
+              onPress={async() => {
+                await Analytic.logEvent('Tap_Logout_Button',
+                {
+                  screen: "News_Screen",
+                });
+                onLogout();
+              }}
               style={styles.roundButton1}
             >
               <Text  style={{

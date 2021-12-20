@@ -11,7 +11,7 @@ import {
 import { Entypo } from "@expo/vector-icons";
 import { NewsContext } from "../../../services/news/context";
 import News from "./news.component";
-
+import * as Analytics from "expo-firebase-analytics"
 const Search = () => {
   const {
     darkTheme,
@@ -43,7 +43,13 @@ const Search = () => {
           backgroundColor: darkTheme ? "black" : "lightgrey",
           color: darkTheme ? "white" : "black",
         }}
-        onChangeText={(text) => handleSearch(text)}
+        onChangeText={async(text) => {
+          await Analytics.logEvent("Search_News_Event",{
+            screen: "Search Screen",
+            searchKeyword: text
+          });
+          handleSearch(text);
+        }}
         placeholder="Search for news"
         placeholderTextColor={darkTheme ? "white" : "grey"}
       />
