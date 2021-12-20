@@ -13,6 +13,7 @@ export const AuthenticationContextProvider = ({ children }) => {
   firebase.auth().onAuthStateChanged((usr) => {
     if (usr) {
       setUser(usr);
+      setError(null);
       setIsLoading(false);
     } else {
       setIsLoading(false);
@@ -25,7 +26,8 @@ export const AuthenticationContextProvider = ({ children }) => {
       .then((u) => {
         console.log(u);
         setUser(u);
-        Analytics.setUserId(u.email)
+        Analytics.setUserId(u.email);
+        setError(null);
         setIsLoading(false);
       })
       .catch((e) => {
@@ -44,7 +46,8 @@ export const AuthenticationContextProvider = ({ children }) => {
     createUserRequest(email, password)
       .then((u) => {
         setUser(u);
-        Analytics.setUserId(u.email)
+        Analytics.setUserId(u.email);
+        setError(null);
         setIsLoading(false);
       })
       .catch((e) => {
